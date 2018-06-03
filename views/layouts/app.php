@@ -42,9 +42,13 @@ MainAsset::register($this);
 <body class="page-body" data-url="http://neon.dev">
 <?php $this->beginBody() ?>
 <div class="page-container">
-    <?=(!Yii::$app->user->isGuest)?$this->render('//parts/sidebar'):"";?>
+    <?=$this->render('//parts/sidebar');?>
     <div class="main-content">
         <?=$this->render('//parts/header')?>
+        <?= Breadcrumbs::widget(['homeLink' => ['label' => 'Bosh sahifa',
+            'url' => Yii::$app->getHomeUrl()],
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
        <?=$content?>
         <br />
         <!-- lets do some work here... -->

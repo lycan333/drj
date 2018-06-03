@@ -28,9 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
-            'faku_id',
+            [
+                'attribute'=>'faku_id',
+                'value'=>function ($data) {
+                    return $data->faku->nomi;
+                },
+            ],
             'course',
             'Study_year',
         ],

@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Xona;
 use Yii;
 use app\models\DarsRejasi;
 use app\Searchmodels\DarsRejasiSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,13 +22,14 @@ class DarsRejasiController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
         ];
+    }
+
+    public function beforeAction($i)
+    {
+        $this->layout = "app";
+        return parent::beforeAction($i);
+
     }
 
     /**
@@ -41,6 +44,52 @@ class DarsRejasiController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionVisual($id)
+    {
+        $data = DarsRejasi::find()->where("Gid=" . $id)->all();
+        $arr = [];
+        foreach ($data as $k => $v) {
+            if ($v->para % 2 == 0) {
+                $arr[$v->kun][$v->para / 2]['fan'] = $v->fan->Fan;
+                $arr[$v->kun][$v->para / 2]['xona'] = $v->xona->num . $v->xona->korpus->nomi;
+            }
+        }
+        return $this->render('visual', [
+            'data' => $arr
+        ]);
+    }
+
+    public function actionRooms($kun, $para)
+    {
+       $room  = Xona::findBySql("
+            SELECT * from Xona
+             WHERE num NOT IN
+             (SELECT Xona.num as num FROM `Xona`
+             INNER JOIN DarsRejasi on DarsRejasi.xona_id=Xona.id
+             WHERE DarsRejasi.para=$para AND DarsRejasi.kun=$kun)
+        ")->all();
+        $r = [];
+        foreach ($room as $k=>$v ) {
+            $a['value'] = $v->id;
+            $a['text'] = $v->num.$v->korpus->nomi;
+            $r[] = $a;
+        }
+        return Json::encode($r);
+
+    }
+
+    public function actionVisualAdd($id)
+    {
+        $model = new DarsRejasi();
+        $model->Gid = $id;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+        return $this->render('createVisual', [
+            'model' => $model,
         ]);
     }
 

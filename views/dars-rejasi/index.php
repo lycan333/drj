@@ -3,11 +3,12 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\Searchmodels\DarsRejasiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Dars Rejasis';
+$this->title = 'Dars Rejasi';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="dars-rejasi-index">
@@ -17,22 +18,50 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Dars Rejasi', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dars Jadvali qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout'=>'{items}',
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'Fan_id',
-            'xona_id',
+            [
+                'attribute' => 'Fan_id',
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Fanlar::find()->all(), 'id', 'Fan'),
+                'value' => 'fan.Fan'
+            ],
+            [
+                'attribute' => 'xona_id',
+                'value' => 'xona.num'
+            ],
             'para',
-            'kun',
-            //'Fantype',
-            //'Gid',
+            [
+                'attribute' => 'kun',
+                'filter' => [
+                    'Dushanba',
+                    'Seshanba',
+                    'Chorshanba',
+                    'Payshanba',
+                    'Juma',
+                    'Shanba'
+                ],
+                'value' => function ($m) {
+                    return $m->hafatakuni[$m->kun];
+                }
+            ],
+            [
+                'attribute' => 'Fantype',
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Roomtype::find()->all(), 'id', 'Name'),
+                'value' => 'fantype.Name'
+            ],
+            [
+                'attribute' => 'Gid',
+                'value' => 'g.nomi'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

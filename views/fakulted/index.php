@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\Searchmodels\FakultedSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Fakulteds';
+$this->title = 'Fakultedlar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fakulted-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Fakulted', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Fakulted qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nomi',
 
             ['class' => 'yii\grid\ActionColumn'],

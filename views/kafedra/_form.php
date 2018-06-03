@@ -7,19 +7,20 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Kafedra */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="kafedra-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'Nomi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title"><?= $this->title ?></div>
     </div>
+    <div class="panel-body">
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?php ActiveForm::end(); ?>
+        <?= $form->field($model, 'Nomi')->textInput(['maxlength' => true]) ?>
 
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
 </div>

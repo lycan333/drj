@@ -3,11 +3,12 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\Searchmodels\FlowsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Flows';
+    $this->title = 'Patoklar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="flows-index">
@@ -17,18 +18,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Flows', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Patok kiritish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout'=>'{items}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'name',
-            'faku_id',
+            [
+                'attribute' => 'faku_id',
+                'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Fakulted::find()->all(),'id','nomi'),
+                'value' => 'faku.nomi'
+            ],
             'course',
             'Study_year',
 

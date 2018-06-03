@@ -4,50 +4,88 @@
 
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
+<div class="row">
+    <div class="col-sm-3">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <div class="tile-stats tile-primary">
+            <div class="icon"><i class="entypo-suitcase"></i></div>
+            <div class="num" data-start="0" data-end="83" data-prefix="-, " data-postfix=" &pound;" data-duration="1500" data-delay="0">0 &pound;</div>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+            <h3>Prefix and Postfix</h3>
+            <p>so far in our blog, and our website.</p>
+        </div>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 
-    <div class="body-content">
+    <div class="col-sm-3">
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+        <div class="tile-stats tile-red">
+            <div class="icon"><i class="entypo-gauge"></i></div>
+            <div class="num">83</div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+            <h3>Registered users</h3>
+            <p>so far in our blog, and our website.</p>
         </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="tile-stats tile-aqua">
+            <div class="icon"><i class="entypo-mail"></i></div>
+            <div class="num">83</div>
+
+            <h3>Registered users</h3>
+            <p>so far in our blog, and our website.</p>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="tile-stats tile-blue">
+            <div class="icon"><i class="entypo-suitcase"></i></div>
+            <div class="num">83</div>
+
+            <h3>Registered users</h3>
+            <p>so far in our blog, and our website.</p>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+
+        <table class="table table-condensed table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Arlind</td>
+                <td>Nushi</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Art</td>
+                <td>Ramadani</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Filan</td>
+                <td>Fisteku</td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 </div>

@@ -18,12 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Xona', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Xona kiritish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout'=>'{items}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -36,7 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'num',
             ],
             'T_soni',
-            'Korpus_id',
+            [
+                'attribute' => 'Korpus_id',
+                'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Korpus::find()->all(),'id','nomi'),
+                'value' => 'korpus.nomi'
+            ],
             //'status',
 
             ['class' => 'yii\grid\ActionColumn'],

@@ -18,7 +18,8 @@ class DarsRejasiSearch extends DarsRejasi
     public function rules()
     {
         return [
-            [['id', 'Fan_id', 'xona_id', 'para', 'kun', 'Fantype', 'Gid'], 'integer'],
+            [['id', 'Fan_id', 'xona_id', 'para', 'kun', 'Fantype'], 'integer'],
+            [[ 'Gid'], 'safe'],
         ];
     }
 
@@ -64,9 +65,8 @@ class DarsRejasiSearch extends DarsRejasi
             'para' => $this->para,
             'kun' => $this->kun,
             'Fantype' => $this->Fantype,
-            'Gid' => $this->Gid,
         ]);
-
+        $query->orFilterWhere(['like', 'Gid', $this->Gid]);
         return $dataProvider;
     }
 }

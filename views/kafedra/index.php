@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\Searchmodels\KafedraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Kafedras';
+$this->title = 'Kafedralar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="kafedra-index">
@@ -17,18 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Kafedra', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Kafedra qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'emptyText'=>Yii::$app->params[emptyText],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'Nomi',
-            'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

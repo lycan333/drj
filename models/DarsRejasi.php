@@ -30,6 +30,15 @@ class DarsRejasi extends \yii\db\ActiveRecord
         return 'DarsRejasi';
     }
 
+    public $hafatakuni = [
+        'Dushanba',
+        'Seshanba',
+        'Chorshanba',
+        'Payshanba',
+        'Juma',
+        'Shanba'
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -64,6 +73,14 @@ class DarsRejasi extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    /**
+     * @param int $kun
+     */
+    public function setKun($kun)
+    {
+        $this->kun = $kun;
+    }
+
     public function getFan()
     {
         return $this->hasOne(Fanlar::className(), ['id' => 'Fan_id']);

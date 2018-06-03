@@ -28,9 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'Flow_id',
-            'Subject_id',
+            [
+                'attribute'=>'Flow_id',
+                'value'=>function ($data) {
+                    return $data->flow->name;
+                },
+            ],
+            [
+                'attribute'=>'Subject_id',
+                'value'=>function ($data) {
+                    return $data->subject->Fan;
+                },
+            ],
+            '',
         ],
     ]) ?>
 

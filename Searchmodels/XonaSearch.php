@@ -66,6 +66,7 @@ class XonaSearch extends Xona
             'Korpus_id' => $this->Korpus_id,
             'status' => $this->status,
         ]);
+        $query->orFilterWhere(['>', 'T_soni', $this->T_soni]);
 
         return $dataProvider;
     }

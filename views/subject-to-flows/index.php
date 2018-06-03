@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\Searchmodels\STFSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Subjects To Flows';
+$this->title = 'Fanlarni patoklarga biriktirish';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subjects-to-flows-index">
@@ -17,18 +17,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Subjects To Flows', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Fanlarni patoklarga biriktirish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'emptyText'=>Yii::$app->params[emptyText],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'Flow_id',
-            'Subject_id',
+            [
+                    'attribute'=>'Flow_id',
+                'value'=>'flow.name',
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Flows::find()->all(), 'id', 'name')
+            ],
+            [
+                'attribute'=>'Subject_id',
+                'value'=>'subject.Fan',
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Fanlar::find()->all(), 'id', 'Fan'),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

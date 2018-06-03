@@ -17,23 +17,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Groups', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Guruh qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout'=>'{items}{pager}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'nomi',
             'kurs',
-            'Fakul_ID',
+            [
+                    'attribute'=>'Fakul_ID',
+                'value'=>'fakul.nomi',
+                'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Fakulted::find()->all(),'id','nomi')
+            ],
             'tsoni',
-            //'flow_id',
-            //'study_year',
-            //'status',
+            [
+                    'attribute'=>'flow_id',
+                'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Flows::find()->all(),'id','name'),
+                'value'=>'flow.name'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
